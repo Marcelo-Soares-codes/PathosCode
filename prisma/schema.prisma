@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Anat {
+  id          String    @id @unique @default(uuid())
+  name        String
+  description String?
+  comments    String?
+  executions  String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  samples     Sample[]  // Relacionamento de um-para-muitos com Sample
+}
+
+model Sample {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  shipping       String?
+  anatId      String   // Chave estrangeira
+  anat        Anat     @relation(fields: [anatId], references: [id])
+}
