@@ -30,5 +30,7 @@ model Sample {
   description String?
   shipping       String?
   anatId      String   // Chave estrangeira
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   anat        Anat     @relation(fields: [anatId], references: [id])
 }

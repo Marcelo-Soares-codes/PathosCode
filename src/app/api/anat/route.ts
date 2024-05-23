@@ -8,7 +8,11 @@ import { keyMiddleware } from "@/lib/middlewares/admin.middleware";
 export async function GET(req: NextRequest) {
   try {
     const anatList = await prisma.anat.findMany();
-    return NextResponse.json(anatList);
+    return NextResponse.json({
+      success: true,
+      status: 200,
+      anatList,
+    });
   } catch (error) {
     handleError(error);
   }
