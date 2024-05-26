@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PathosCode
 
-## Getting Started
+PathosCode é um aplicativo desenvolvido para a pesquisa de códigos de anatomia patológica. Criado por Marcelo Soares, este projeto foi desenvolvido como um trabalho freelancer para uma clínica médica. O aplicativo permite aos usuários pesquisar códigos de amostras e anatomia patológica de forma eficiente.
 
-First, run the development server:
+![PathosCode](./public/home-screen.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Deploy
+
+O projeto está implantado e pode ser acessado no seguinte link:
+
+[PathosCode Deploy](https://pathoscode.vercel.app)
+
+## Funcionalidades
+
+- **Pesquisa de Códigos de Anatomia Patológica:** Permite aos usuários pesquisar e visualizar códigos de anatomia patológica.
+- **Temas:** Usuários podem alternar entre temas dark e light para melhor adaptação.
+- **Gestão de Amostras:** Admins podem criar, editar e excluir amostras.
+- **Gestão de Anatomias:** Admins podem criar, editar e excluir registros de anatomia patológica.
+- **Autenticação Admin:** Protege funcionalidades sensíveis com autenticação baseada em tokens.
+- **Interface Responsiva:** Interface amigável e responsiva, adaptada para diversos dispositivos.
+
+## Tecnologias Utilizadas
+
+- **Next.js:** Framework React para a construção de interfaces de usuário.
+- **NextAPI:** Para a criação das APIs do lado do servidor.
+- **PostgreSQL:** Banco de dados utilizado para armazenar informações das amostras e anatomias patológicas.
+
+## Como Iniciar
+
+### Pré-requisitos
+
+- Node.js instalado
+- PostgreSQL instalado e em execução
+
+### Configuração do Banco de Dados
+
+1. Crie um banco de dados PostgreSQL.
+2. Configure as variáveis de ambiente no arquivo `.env` com as credenciais do seu banco de dados PostgreSQL.
+
+### Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
+
+```env
+DATABASE_URL=postgres://<usuário>:<senha>@<host>:<porta>/<nome_do_banco>
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+SECRET_KEY_ADMIN=<sua_chave_secreta_admin>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Instalação
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone o repositório:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```sh
+   git clone https://github.com/Marcelo-Soares-codes/PathosCode.git
+   ```
 
-## Learn More
+2. Navegue até o diretório do projeto:
 
-To learn more about Next.js, take a look at the following resources:
+   ```sh
+   cd pathoscode
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Instale as dependências:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```sh
+   npm install
+   ```
 
-## Deploy on Vercel
+### Executando a Aplicação
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Execute as migrações do banco de dados para criar as tabelas necessárias:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```sh
+   npx prisma migrate dev
+   ```
+
+2. Inicie a aplicação em ambiente de desenvolvimento:
+
+   ```sh
+   npm run dev
+   ```
+
+   O aplicativo estará disponível em `http://localhost:3000`.
+
+## Licença
+
+Este projeto foi desenvolvido por Marcelo Soares. O uso deste software é restrito à clínica médica para a qual foi desenvolvido. A revenda ou redistribuição por terceiros é proibida sem permissão expressa do autor. Para mais detalhes, consulte o arquivo [LICENSE.txt](./LICENSE.txt).
+
+---
+
+© 2023 Marcelo Soares. Todos os direitos reservados.

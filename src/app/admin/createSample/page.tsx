@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { SampleType } from "@/DTOs/sample.DTO";
 import { AnatType } from "@/DTOs/anat.DTO";
 import api from "@/utils/api";
+import fetchAnatList from "@/lib/getAnat";
+import Cookies from "js-cookie";
 
 const SampleForm = () => {
   const [sampleData, setSampleData] = useState<
@@ -20,16 +22,16 @@ const SampleForm = () => {
 
   useEffect(() => {
     const fetchAnats = async () => {
-      try {
-        const response = await api.get("/anat");
-        setAnats(response.data.anatList);
-        console.log(anats);
-      } catch (error) {
-        console.error("Erro ao buscar anatomias:", error);
-      }
+      const anatList = await fetchAnatList();
+      setAnats(anatList);
     };
 
-    fetchAnats();
+    const token = Cookies.get("authToken");
+    if (!token) {
+      window.location.href = "/admin/auth";
+    } else {
+      fetchAnats();
+    }
   }, []);
 
   const handleChange = (
@@ -46,7 +48,11 @@ const SampleForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const token = "mlkXsusAyzUo0nX8Bj18KYxWe59YDB7B"; // Substitua pelo seu token de autorização
+    const token = Cookies.get("authToken");
+    if (!token) {
+      window.location.href = "/admin/auth";
+      return;
+    }
 
     try {
       const response = await api.post("/sample", sampleData, {
@@ -70,7 +76,7 @@ const SampleForm = () => {
     <div className="flex justify-center items-center min-h-screen bg-primary p-6">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-neutral text-neutral-content shadow-md rounded-3xl py-6 px-10"
+        className="w-full max-w-lg bg-neutral dark:bg-primary text-primary shadow-md rounded-3xl py-6 px-10"
       >
         <h2 className="text-2xl text-center font-bold mb-4">
           Cadastrar Amostra
@@ -88,6 +94,28 @@ const SampleForm = () => {
             required
             className="input input-bordered w-full"
           />
+        </div>
+
+        <div className="form-control mb-4">
+          <label className="label">
+            <span className="label-text">Anatomia Patológica</span>
+          </label>
+          <select
+            name="anatId"
+            value={sampleData.anatId}
+            onChange={handleChange}
+            required
+            className="select select-bordered w-full"
+          >
+            <option value="" disabled>
+              Selecione uma Anatomia Patológica
+            </option>
+            {anats.map((anat) => (
+              <option key={anat.id} value={anat.id}>
+                {anat.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-control mb-4">
@@ -112,28 +140,6 @@ const SampleForm = () => {
             onChange={handleChange}
             className="textarea textarea-bordered w-full"
           />
-        </div>
-
-        <div className="form-control mb-4">
-          <label className="label">
-            <span className="label-text">Anatomia Patológica</span>
-          </label>
-          <select
-            name="anatId"
-            value={sampleData.anatId}
-            onChange={handleChange}
-            required
-            className="select select-bordered w-full"
-          >
-            <option value="" disabled>
-              Selecione uma Anatomia Patológica
-            </option>
-            {anats.map((anat) => (
-              <option key={anat.id} value={anat.id}>
-                {anat.name}
-              </option>
-            ))}
-          </select>
         </div>
 
         <div className="flex justify-center">

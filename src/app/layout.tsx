@@ -1,3 +1,17 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Cookies from "js-cookie";
+import {
+  Home,
+  KeyRound,
+  MenuIcon,
+  Search,
+  SquarePenIcon,
+  SquarePlus,
+  X,
+} from "lucide-react";
 import "./styles/reset.css";
 import "./styles/index.css";
 
@@ -6,10 +20,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get("authToken");
+    setIsAuthenticated(!!token);
+  }, []);
+
+  const handleLinkClick = () => {
+    const drawerCheckbox = document.getElementById("my-drawer");
+    if (drawerCheckbox) {
+      (drawerCheckbox as HTMLInputElement).checked = false;
+    }
+  };
+
   return (
     <html lang="pt">
       <body className="relative">
-        <label className="absolute right-12 top-7 swap swap-rotate">
+        <label className="absolute right-7 md:right-12 top-4 md:top-7 swap swap-rotate z-50">
           {/* this hidden checkbox controls the state */}
           <input type="checkbox" className="theme-controller" value="light" />
 
@@ -31,7 +59,79 @@ export default function RootLayout({
             <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
           </svg>
         </label>
-        {children}
+
+        <div className="drawer bg-base-200">
+          <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content">
+            <label
+              htmlFor="my-drawer"
+              className="btn btn-primary bg-transparent hover:bg-transparent text-primary hover:text-zinc-500 drawer-button"
+            >
+              <MenuIcon className="" />
+            </label>
+            {children}
+          </div>
+
+          <div className="drawer-side z-50">
+            <label
+              htmlFor="my-drawer"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul className="menu p-4 w-80 min-h-full gap-4 pt-2 bg-base-200 text-base-content">
+              {/* Close button */}
+              <li className="flex justify-end mb-6 w-full">
+                <button
+                  onClick={handleLinkClick}
+                  className="btn btn-square btn-ghost ml-auto"
+                >
+                  <X />
+                </button>
+              </li>
+              {/* Sidebar content here */}
+              {isAuthenticated ? (
+                <>
+                  <li>
+                    <Link href={`/admin`} onClick={handleLinkClick}>
+                      <Home /> Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={`/`} onClick={handleLinkClick}>
+                      <Search /> Pesquisar
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={"/admin/createSample"}
+                      onClick={handleLinkClick}
+                    >
+                      <SquarePlus /> Criar Amostra
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={"/admin/createAnat"} onClick={handleLinkClick}>
+                      <SquarePenIcon /> Criar Anatomia
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link href={`/`} onClick={handleLinkClick}>
+                      <Home /> Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/admin/auth" onClick={handleLinkClick}>
+                      <KeyRound /> Login Admin
+                    </Link>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
+        </div>
       </body>
     </html>
   );

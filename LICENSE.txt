@@ -1,0 +1,53 @@
+
+# Licença de Uso
+
+## PathosCode
+
+Este documento estabelece os termos e condições para o uso do software PathosCode, desenvolvido por Marcelo Soares.
+
+### 1. Direitos Autorais
+
+O software PathosCode é de propriedade exclusiva de Marcelo Soares. Todos os direitos estão reservados. Este software é protegido pelas leis de direitos autorais e tratados internacionais.
+
+### 2. Concessão de Licença
+
+Marcelo Soares concede ao usuário uma licença não exclusiva, intransferível e revogável para uso pessoal e interno do software, de acordo com os termos estabelecidos nesta licença.
+
+### 3. Uso Permitido
+
+O usuário tem permissão para:
+- Instalar e usar o software em seu dispositivo para fins pessoais e internos.
+- Fazer cópias do software para fins de backup e arquivamento, desde que essas cópias sejam usadas exclusivamente pelo usuário.
+
+### 4. Restrições de Uso
+
+O usuário NÃO tem permissão para:
+- Revender, redistribuir, sublicenciar, alugar, arrendar ou transferir de outra forma o software para terceiros sem a permissão expressa e por escrito de Marcelo Soares.
+- Modificar, descompilar, fazer engenharia reversa ou criar obras derivadas do software.
+- Utilizar o software para quaisquer fins ilegais ou não autorizados.
+
+### 5. Limitação de Responsabilidade
+
+O software é fornecido "como está", sem garantias de qualquer tipo, expressas ou implícitas, incluindo, mas não se limitando a, garantias de comercialização, adequação a um propósito específico ou não violação. Em nenhum caso Marcelo Soares será responsável por quaisquer danos, incluindo, sem limitação, lucros cessantes, perda de dados ou outros danos comerciais ou especiais, incidentais, indiretos ou consequenciais, decorrentes do uso ou da incapacidade de usar o software, mesmo que Marcelo Soares tenha sido avisado da possibilidade de tais danos.
+
+### 6. Atualizações e Suporte
+
+Marcelo Soares não tem obrigação de fornecer atualizações, upgrades ou suporte técnico para o software. No entanto, ele pode fornecer atualizações ou upgrades a seu exclusivo critério.
+
+### 7. Rescisão
+
+Esta licença é válida até ser rescindida. Marcelo Soares pode rescindir esta licença a qualquer momento se o usuário violar qualquer termo aqui contido. Após a rescisão, o usuário deve interromper todo o uso do software e destruir todas as cópias do software em sua posse.
+
+### 8. Termos Gerais
+
+Esta licença constitui o acordo completo entre o usuário e Marcelo Soares no que diz respeito ao uso do software e substitui todos os entendimentos ou acordos anteriores, orais ou escritos, relacionados ao mesmo assunto. Se qualquer disposição desta licença for considerada inválida ou inexequível, as disposições restantes continuarão em pleno vigor e efeito.
+
+---
+
+Marcelo Soares  
+marcelo.soares1070@gmail.com  
+Data: 26/05/2024
+
+---
+
+Este software foi desenvolvido para uso exclusivo conforme descrito acima. Qualquer uso não autorizado ou violação dos termos pode resultar em ações legais. Para obter permissão para usos não cobertos por esta licença, entre em contato com o autor.

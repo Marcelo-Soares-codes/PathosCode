@@ -78,7 +78,20 @@ const config: Config = {
       },
     },
     daisyui: {
-      themes: ["light", "dark", "cupcake"],
+      themes: [
+        {
+          light: {
+            primary: "#a991f7",
+            secondary: "#f6d860",
+            accent: "#37cdbe",
+            neutral: "#3d4451",
+            "base-100": "#ffffff",
+            "base-200": "##4b5563",
+          },
+        },
+        "dark",
+        "cupcake",
+      ],
     },
   },
   plugins: [require("daisyui"), require("tailwindcss-animate")],

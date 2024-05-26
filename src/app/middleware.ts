@@ -6,9 +6,9 @@ export default function middleware(request: NextRequest) {
   const cookies = parse(request.headers.get("cookie") || "");
   const token = cookies["adminToken"];
 
-  console.log("Middleware initialized");
-  console.log("Current path:", request.nextUrl.pathname);
-  console.log("Token:", token);
+  //console.log("Middleware initialized");
+  //console.log("Current path:", request.nextUrl.pathname);
+  //console.log("Token:", token);
 
   const protectedRoutes = [
     "/admin/home",
@@ -22,7 +22,6 @@ export default function middleware(request: NextRequest) {
     ) &&
     !token
   ) {
-    console.log("Redirecting to login...");
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

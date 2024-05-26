@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import { AnatType } from "@/DTOs/anat.DTO";
 import api from "@/utils/api";
 
@@ -16,6 +17,13 @@ const AnatForm = () => {
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
+  useEffect(() => {
+    const token = Cookies.get("authToken");
+    if (!token) {
+      window.location.href = "/admin/auth";
+    }
+  });
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -28,9 +36,14 @@ const AnatForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const token = "mlkXsusAyzUo0nX8Bj18KYxWe59YDB7B"; // Substitua pelo seu token de autorização
 
     try {
+      const token = Cookies.get("authToken");
+      if (!token) {
+        window.location.href = "/admin/auth";
+        return;
+      }
+
       const response = await api.post("/anat", anatData, {
         headers: {
           Authorization: `Bearer ${token}`,
