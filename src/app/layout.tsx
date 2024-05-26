@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import "./styles/reset.css";
 import "./styles/index.css";
+import Head from "next/head";
 
 export default function RootLayout({
   children,
@@ -36,6 +37,11 @@ export default function RootLayout({
 
   return (
     <html lang="pt">
+      <Head>
+        {" "}
+        <title>PathosCodes</title>
+        <link rel="icon" href="./favicon.svg" />
+      </Head>
       <body className="relative">
         <label className="absolute right-7 md:right-12 top-4 md:top-7 swap swap-rotate z-50">
           {/* this hidden checkbox controls the state */}
